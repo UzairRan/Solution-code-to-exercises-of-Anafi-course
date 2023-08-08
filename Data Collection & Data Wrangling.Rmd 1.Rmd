@@ -1,0 +1,176 @@
+---
+title: "Data Collection and Data Wrangling"
+author: "Uzair Shafique"
+date: "Aug, 2023"
+output: html_document
+---
+
+##### NOTE: 
+1. Change author name and date to your exercise submission date in above section
+2. Your code MUST execute without errors. 
+3. You can add more lines in your code as required.
+
+## Section 1: Manipulating Data
+
+### Question 1 
+**The dataset is loaded for you. Perform the following tasks:**  
+1. use the USPersonalExpenditure dataset and store in a variable.  
+2. Compute summary statistics: mean, standard deviation (sd) across time for each of the indicators.  
+3. Create a new column that contains average values for each of the indicators.  
+
+
+```{r }
+library(help='datasets')
+```
+
+
+```{r }
+USPersonalExpenditure
+```
+
+```{r }
+### start solution ####
+# Store the dataset in a variable
+US_data <- USPersonalExpenditure
+```
+
+
+```{r }
+#Compute summary statistics: mean and standard deviation across time for each indicator
+summary(US_data)
+```
+
+
+```{r }
+library(dplyr)
+```
+
+
+```{r }
+# Create a new column with average values for each indicator
+US_data$Average <- rowMeans(US_data)
+US_data
+```
+
+
+```{r }
+### end solution ####
+```
+
+### Question 2 
+**download the data from the available URL:**  
+1. Create a new column containing the average bodywt (body weight) of each genus and of each order.  
+2. Create a dataframe containing the average REM sleep time for each order.  
+3. How many missing values are there (in total) and per column?  
+4. How would you like to impute missing values? Write Justification.  <i> Hint: Overall Mean/media/mode vs. Groupby Mean/media/mode?
+
+
+```{r }
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/msleep_ggplot2.csv"
+filename <- "msleep_ggplot2.csv"
+```
+
+
+```{r }
+### start solution ####
+# Download and load the data
+msleep_data <- read.csv(url)
+```
+
+
+```{r }
+# Calculate average bodywt by genus and order
+msleep_data <- msleep_data %>%
+        group_by(genus) %>%
+        mutate(avg_bodywt_genus = mean(bodywt, na.rm = TRUE)) %>%
+        group_by(order) %>% 
+        mutate(avg_bodywt_order = mean(bodywt, na.rm = TRUE))
+```
+
+
+```{r }
+# Calculate average REM sleep time by order
+avg_sleep_rem <- msleep_data %>%
+  group_by(order) %>%
+  summarize(avg_sleep_rem_time = mean(sleep_rem, na.rm = TRUE))
+```
+
+
+```{r }
+# caluculate NA value's
+sum(is.na(msleep_data))
+# how to calculate missing values per column
+missing_per_column <- colSums(is.na(msleep_data))
+```
+
+
+```{r }
+# List of numeric columns
+numeric_columns <- names(msleep_data)[sapply(msleep_data, is.numeric)]
+
+# Impute missing values with column means for numeric columns
+imputed_data <- msleep_data %>%
+  mutate(across(all_of(numeric_columns), ~ ifelse(is.na(.), mean(., na.rm = TRUE), .)))
+```
+
+
+```{r }
+### end solution ###
+```
+
+### Good job! You've completed this section!
+
+## Section 2: Tidyverse
+
+### Question 1
+**Use the above dataset and perform the following tasks using any library from tidyverse:**  
+1. Filter results to print average REM sleep and average total sleep  for those animals who are carnivores and then for those who are primates.  
+2. Use the order column and "spread" it across the rest of the observations.  
+
+
+```{r }
+### start solution ####
+
+```
+
+
+```{r }
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+
+```{r }
+# Task 1: Filter and print average REM sleep and average total sleep for carnivores and primates
+msleep_data %>% filter(order == "Carnivora") %>% summarise(avg_rem = mean(sleep_rem), avg_sleep = mean(sleep_total))
+```
+
+
+```{r }
+msleep_data %>% filter(order == "Primates") %>% summarise(avg_rem = mean(sleep_rem), avg_sleep = mean(sleep_total))
+```
+
+
+```{r }
+# Task 2: Spread the order column across the rest of the observations
+library(tidyr)
+msleep_data %>% spread(order, name)
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+### end solution ####
+```
+
+### Good job! You've completed this entire exercise!
