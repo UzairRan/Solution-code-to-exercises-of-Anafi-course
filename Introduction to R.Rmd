@@ -1,0 +1,714 @@
+---
+title: "Introduction to R Programming"
+author: "Uzair Shafique"
+date: "Aug, 2023"
+output: html_document
+---
+
+
+##### NOTE: 
+1. Change author name and date to your exercise submission date in above section
+2. Your code MUST execute without any errors. 
+3. You can add more lines in your code as required.
+
+## Section 1: Data Types and Operations Pt. 1
+
+### Question 1 
+**Create the variables with the following composition:**  
+1. A vector containing each letter of your first name as its elements.  
+2. A variable that contains your name concatenated from the vector created in (1)  
+3. A variable containing a sequence from 100 to 120.  
+4. Create a matrix of 3x3 dimensions that contains the even sequence of numbers starting from 2.  
+5. Assign names to the variables.  
+
+
+```{r }
+#### Start solution ####
+Uzair_Vector  <- c("U", "Z", "A", "I", "R")
+Uzair_Vector
+```
+
+
+```{r }
+name <- paste(Uzair_Vector, collapse = "")
+name
+```
+
+
+```{r }
+seq <- 100:120
+seq
+```
+
+
+```{r }
+m <- matrix(2:10, ncol = 3, nrow =3)
+m
+```
+
+
+```{r }
+colnames(m) <- c("col1", "col2", "col3")
+rownames(m) <- c("row1", "row2", "row3")
+m
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Question 2
+**Create a factor variable emp_status:**  
+1. Containing the categorical variables: Employed, Unemployed, Self-Employed, with each level appearing atleast more than 2.  
+2. Display the levels and the factor variable as a table.  
+3. Unclass the elements of the factor variable.  
+
+
+```{r }
+#### Start solution ####
+emp_status <- c("Employed", "Unemployed", "Self_Employed","Employed", "Unemployed", "Self_Employed")
+emp_status
+```
+
+
+```{r }
+emp_status_factor <- factor(emp_status)
+```
+
+
+```{r }
+table(emp_status_factor)
+```
+
+
+```{r }
+unclass(emp_status_factor)
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Question 3
+**Create a dataframe object called bank_customers:**  
+1. the data frame will have three columns: CustomerID, hasAccount, totalBalance  
+2. Fill the data as follows  
+    a. Alicia does not have an account. She is here for inquiry   
+    b. Nancy is here to check on her account balance of USD 10,000.  
+    c. Fernando is here to deposit USD 100 in his account which had no balance.  
+    d. Louis will withdraw all his money from the account that had USD 2,000.   
+    e. Diane is here for information.   
+3. For customers that do not have a value, use NA as placeholder.  
+4. Print the number of rows, columns and names for the data frame.  
+
+
+```{r }
+#### Start solution ####
+bank_customers <- data.frame("CustomerID",
+                             "hasAccount", 
+                             "totalBalance")
+bank_customers
+```
+
+
+```{r }
+bank_customers <- data.frame(
+  CustomerID = c("Alicia", "Nancy", "Fernando", "Louis", "Diane"))
+bank_customers
+```
+
+
+```{r }
+bank_customers <- data.frame(
+  hasAccount = c(NA, "yes", "yes", "yes", NA)
+)
+bank_customers
+```
+
+
+```{r }
+bank_customers <- data.frame(
+  totalBalance = c(NA, 10000, 100, 0, NA)
+)
+```
+
+
+```{r }
+cat("Number of rows:", nrow(bank_customers), "\n")
+cat("Number of columns:", ncol(bank_customers), "\n")
+cat("Column names:", colnames(bank_customers))
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Good Job! You have successfully completed the section!
+
+## Section 2: Control Structures 
+
+### Question 1
+**Create a variable containing a sequence of numbers from 1 to 100:**  
+1. Iterate over the variables and print those numbers which are prime.  
+
+**Create a variable var with a value of 1:**  
+1. Create a while loop and increase the value of var at each iteration.   
+2. When you reach the 10th prime number, terminate the loop and print the number.  
+
+
+```{r }
+#### Start solution ####
+numbers <- 1:100
+```
+
+
+```{r }
+for (i in numbers) {
+  if (i == 2) {
+    print(i)
+  } else if (i > 2) {
+    for (j in 2:(i-1)) {
+      if (i %% j == 0) {
+        break
+      } else if (j == i-1) {
+        print(i)
+      }
+    }
+  }
+}
+```
+
+
+```{r }
+var <- 1
+count <- 0
+while (count < 10) {
+  if (var) {
+    count <- count + 1
+    if (count == 10) {
+      print(var)
+      break
+    }
+  }
+  var <- var + 1
+}
+```
+
+
+```{r }
+# end solution here
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Question 2
+**Create a matrix of size 3x3 called mat_1:**  
+1. Iterate over all the values one by one and print the element as well as the position in the matrix (row, col)
+
+
+```{r }
+#### Start solution ####
+
+```
+
+
+```{r }
+mat_1 <- matrix(1:9, nrow = 3, ncol = 3)
+```
+
+
+```{r }
+mat_1
+```
+
+
+```{r }
+for (i in 1:nrow(mat_1)) {
+  for (j in 1:ncol(mat_1)) {
+    print(paste("Element at (", i, ",", j, "): ", mat_1[i,j], sep=""))
+  }
+}
+```
+
+
+```{r }
+# end here
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Good Job! You have successfully completed the section!
+
+## Section 3: Functions
+
+### Question 1
+**Create a function called gcd that finds the greatest common divisor of two numbers a and b:**  
+1. a and b, should be taken as input.  
+2. The function must print the GCD as well as return it.  
+3. The output must be saved in a variable called answer.  
+
+
+```{r }
+#### Start solution ####
+```
+
+
+```{r }
+gcd <- function(a,b) {
+  
+}
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Question 2
+**Create a function called allConditionsMeet, that checks whether two expressions evaluate to true:**  
+1. a and b, should be taken as input.  
+2. the function should check if a and b, both conditions, evaluate to True.  
+3. The function must returns a boolean value.  
+4. Using a method, print the arguments that function takes.  
+
+
+```{r }
+#### Start solution ####
+```
+
+
+```{r }
+allConditionsMeet <- function(a, b) {
+  cat("The arguments are:", a, b, "\n")
+  return(a && b)
+}
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Good Job! You have successfully completed the section!
+
+## Section 4: Vectorized Operations
+
+### Question 1
+**Create two matrices matrix_1 and matrix_2 of dimensions 2x3 and 3x2:**  
+1. Perform element-wise multiplication.  
+2. Perform matrix multipilcation.   
+
+**Create a 2x2 matrix my_mat:**  
+1. Write a function to find the determinant of the matrix.  
+
+
+```{r }
+#### Start solution ####
+```
+
+
+```{r }
+ # Create two matrices matrix_1 and matrix_2 of dimensions 2x3 and 3x2
+matrix_1 <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+matrix_2 <- matrix(c(7, 8, 9, 10, 11, 12), nrow = 3, ncol = 2)
+```
+
+
+```{r }
+ 
+# Perform matrix multiplication
+matrix_1 %*% matrix_2
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Good Job! You have successfully completed the section!
+
+## Section 5: Date and Time in R
+
+### Question 1
+**Use the current date and time and store them into variables curr_date and curr_time respectively: [use sys]**  
+1. Convert both into date and time objects using the appropriate functions.  
+2. Print the weekday, year, second and hour using the appropriate function and variables.  
+
+
+```{r }
+#### Start solution ####
+# Get the current date and time
+curr_datetime <- Sys.time()
+```
+
+
+```{r }
+# Convert to date and time objects
+curr_date <- as.Date(curr_datetime)
+curr_time <- format(curr_datetime, "%H:%M:%S")
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+# Print the weekday, year, second, and hour
+weekday <- weekdays(curr_date)
+year <- format(curr_date, "%Y")
+second <- format(curr_datetime, "%S")
+hour <- format(curr_datetime, "%H")
+
+cat("Weekday:", weekday, "\n")
+cat("Year:", year, "\n")
+cat("Second:", second, "\n")
+cat("Hour:", hour, "\n")
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Question 2
+**Create a variable to store current date/time**  
+1. Create another variable that stores and set the timezone as GMT-5  
+2. Find the difference between your current time and the GMT-5 timezone.  
+
+
+```{r }
+#### Start solution ####
+```
+
+
+```{r }
+# Get the current date and time
+curr_datetime <- Sys.time()
+
+```
+
+
+```{r }
+# Set timezone to GMT-5
+timezone <- "GMT-5"
+Sys.setenv(TZ = timezone)
+
+```
+
+
+```{r }
+# Get the current date and time in GMT-5
+curr_datetime_gmt5 <- Sys.time()
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+# Calculate the time difference
+time_difference <- difftime(curr_datetime, curr_datetime_gmt5, units = "secs")
+
+cat("Current Date/Time:", curr_datetime, "\n")
+cat("Current Date/Time in GMT-5:", curr_datetime_gmt5, "\n")
+cat("Time Difference (seconds):", time_difference, "\n")
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Good Job! You have successfully completed the section!
+
+## Section 6: Loop Functions
+
+### Question 1
+**Create a function to calculate mean and standard deviation of the provided data**
+1. Create a sequence of numbers from 100 to 150 store in a variable called numbers.
+1. Use lapply, sapply, apply and tapply to implement the functions on "numbers" [only on the second half of the sequence for tapply]
+
+
+```{r }
+#### Start solution ####
+calculate_stats <- function(data) {
+  mean_value <- mean(data)
+  sd_value <- sd(data)
+  return(list(mean = mean_value, sd = sd_value))
+}
+```
+
+
+```{r }
+# Create a sequence of numbers from 100 to 150
+numbers <- 100:150
+```
+
+
+```{r }
+# Divide the sequence into two halves
+half_length <- length(numbers) / 2
+second_half <- numbers[(half_length + 1):length(numbers)]
+```
+
+
+```{r }
+# Using lapply on the second half
+lapply_result <- lapply(list(second_half), calculate_stats)
+
+
+```
+
+
+```{r }
+# Using sapply on the second half
+sapply_result <- sapply(list(second_half), calculate_stats)
+# Using tapply on the second half
+tapply_result <- tapply(second_half, INDEX = rep(1, length(second_half)), FUN = calculate_stats)
+
+```
+
+
+```{r }
+# Print results
+print("Using lapply:")
+print("tapply_result")
+
+print("Using sapply:")
+print("sapply_result")
+
+print("Using apply:")
+
+print("Using_tapply:")
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Question 2
+**Create a matrix of dimensions 4x4**
+1. Find the row-wise and column-wise mean of the matrix.
+2. Print the values.
+
+
+```{r }
+#### Start solution ####
+```
+
+
+```{r }
+# Create a 4x4 matrix
+matrix_data <- matrix(1:16, nrow = 4, ncol = 4)
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+# Calculate row-wise mean
+row_means <- rowMeans(matrix_data)
+```
+
+
+```{r }
+# Calculate column-wise mean
+col_means <- colMeans(matrix_data)
+
+# Print the matrix
+print("Matrix:")
+print(matrix_data)
+```
+
+
+```{r }
+# Print row-wise means
+print("Row-wise Means:")
+print(row_means)
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Good Job! You have successfully completed the section!
+
+## Section 7: Data Split
+
+### Question 1
+**Using the data frame Orange:**  
+1. Using split function to break down the dataset on circumference and store it in 'split_data' variable.   
+2. Print the values for split_data where circumference is 30 and 75.  
+3. Find the average age of the tree when the circumference is 30 and when circumference is 214.  
+
+
+The dataset is loaded and the variable Orange contains the respective dataset.  
+
+
+```{r }
+library(datasets)
+```
+
+
+```{r }
+head(Orange)
+```
+
+
+```{r }
+#### Start solution ####
+```
+
+
+```{r }
+
+# Using split function to break down the dataset on circumference
+split_data <- split(Orange, Orange$circumference)
+
+
+
+
+
+```
+
+
+```{r }
+# Print values for split_data where circumference is 30 and 75
+print("Data for circumference 30:")
+print(split_data$`30`)
+
+print("Data for circumference 75:")
+print(split_data$`75`)
+
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+# Find the average age of the tree when circumference is 30 and 214
+average_age_30 <- mean(split_data$`30`$age)
+average_age_214 <- mean(split_data$`214`$age)
+
+print("Average age when circumference is 30:")
+print(average_age_30)
+
+print("Average age when circumference is 214:")
+print(average_age_214)
+```
+
+
+```{r }
+
+```
+
+
+```{r }
+#### End solution ####
+```
+
+### Save it and push .Rmd and .html file to your Github Repository
+## GOOD JOB! You have successfully finished the course!
